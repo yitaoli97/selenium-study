@@ -1,0 +1,32 @@
+name: Selenium Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Set up Firefox and geckodriver
+        uses: browser-actions/setup-firefox@v1
+
+      - name: Set up geckodriver
+        uses: browser-actions/setup-geckodriver@v1
+
+      - name: Run tests
+        run: pytest test_saucedemo.py -v
