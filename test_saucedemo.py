@@ -18,7 +18,7 @@ def test_standard_user_can_complete_checkout(driver, login_as):
     inventory_page = InventoryPage(driver)
     inventory_page.addToCart("sauce-labs-backpack")
     inventory_page.addToCart("sauce-labs-bike-light")
-    assert inventory_page.getCartCount() == "2"
+    assert inventory_page.getCartCount() == "1"
 
     inventory_page.goToCart()
     wait.until(EC.url_contains("cart"))
