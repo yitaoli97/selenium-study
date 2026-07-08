@@ -1,10 +1,13 @@
 import pytest
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
 from pages.login_page import LoginPage
 
 @pytest.fixture
 def driver():
-    drv = webdriver.Firefox()
+    options = Options()
+    options.add_argument("--headless")
+    drv = webdriver.Firefox(options=options)
     yield drv          # test runs here
     drv.quit()          # runs after the test, even if it failed/raised
     
